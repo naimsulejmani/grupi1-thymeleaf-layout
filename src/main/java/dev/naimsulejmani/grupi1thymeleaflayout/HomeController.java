@@ -4,8 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class HomeController {
+    private final LocalDateTime STARTED_TIME = LocalDateTime.now();
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -22,6 +26,7 @@ public class HomeController {
         model.addAttribute("pageTitle", "Contact Page");
         return "contact";
     }
+
     @GetMapping("/random")
     public String random(Model model) {
         model.addAttribute("pageTitle", "Home Page");
@@ -32,4 +37,24 @@ public class HomeController {
             default -> "index";
         };
     }
+
+    //time page
+    @GetMapping("/time")
+    public String time(Model model) {
+        model.addAttribute("pageTitle", "Time Page");
+        model.addAttribute("startedTime", STARTED_TIME);
+        model.addAttribute("methodCallTime", LocalDateTime.now());
+        return "time";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<div th:replace="~{layoutFile::layout ('Time Page', ~{::main.container})}">
+
+    <main class="container">
+
+        <p th:text="${startedTime}">Started Time</p>
+        <p th:text="${methodCallTime}">Method Call Time</p>
+        <p id="loadedTime"></p>
+        <p id="realTime"></p>
+        <script th:src="@{/js/time.js}"></script>
+    </main>
+
+
+</div>
