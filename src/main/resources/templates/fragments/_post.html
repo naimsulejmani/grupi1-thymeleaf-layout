@@ -1,0 +1,7 @@
+<div th:fragment="showPost(username,content,date,imageUrl)">
+    <h3 th:text="${username}">Username</h3>
+    <p th:text="${content}">Content</p>
+    <i th:text="${date}"></i> <br/>
+    <img th:src="${imageUrl}" alt="No picture provided!" th:if="${imageUrl!=null}"/>
+
+</div>

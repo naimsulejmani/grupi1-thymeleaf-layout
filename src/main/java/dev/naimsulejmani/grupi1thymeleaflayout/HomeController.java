@@ -11,7 +11,9 @@ public class HomeController {
     private final LocalDateTime STARTED_TIME = LocalDateTime.now();
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        var rnd = Math.random();
+        model.addAttribute("random", rnd);
         return "index";
     }
 

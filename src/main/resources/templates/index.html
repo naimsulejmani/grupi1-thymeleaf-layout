@@ -2,7 +2,18 @@
 <html th:replace="~{layoutFile :: layout('Home Page', ~{::section})}">
 
 <section>
-  <p>Welcome to Home Page</p>
+    <p>Welcome to Home Page</p>
+    <hr/>
+    <p th:if="${random>=0.5}">TURR</p>
+    <p th:unless="${random>=0.5}">JAZZ</p>
+
+    <p th:text="${random>=0.5 ? 'TURR' : 'JAZZ'}"></p>
+
+    <script th:src="@{/js/home.js}" th:if="${random>0.5}"></script>
+
+    <p th:style="${random>=0.5 ? 'color: red' : 'color: blue'}">HELLO</p>
+
+
 </section>
 
 </html>

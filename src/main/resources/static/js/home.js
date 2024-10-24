@@ -1,0 +1,1 @@
+alert("HOME SCRIPT LOADED");
