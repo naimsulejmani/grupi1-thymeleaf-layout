@@ -29,6 +29,8 @@ public class HomeController {
         return "contact";
     }
 
+
+
     @GetMapping("/random")
     public String random(Model model) {
         model.addAttribute("pageTitle", "Home Page");
