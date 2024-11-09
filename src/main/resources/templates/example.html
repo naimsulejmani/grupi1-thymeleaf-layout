@@ -18,28 +18,34 @@
     <hr/>
     <table border="1">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Discipline</th>
-                <th>Age</th>
-                <th>Country</th>
-            </tr>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Discipline</th>
+            <th>Age</th>
+            <th>Country</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="athlete, iter : ${athletes}" th:object="${athlete}"
-                th:style="${iter.even ? 'background-color: yellow' : ''}">
-                <td th:text="${iter.count}"></td>
-                <td th:text="*{name}"></td>
-                <td th:text="*{surname}"></td>
-                <td th:text="*{sport}"></td>
-                <td th:text="*{age}"></td>
-                <td th:text="*{country}"></td>
-            </tr>
+        <tr th:each="athlete, iter : ${athletes}" th:object="${athlete}"
+            th:style="${iter.even ? 'background-color: yellow' : ''}">
+            <td th:text="${iter.count}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{surname}"></td>
+            <td th:text="*{sport}"></td>
+            <td th:text="*{age}"></td>
+            <td th:text="*{country}"></td>
+        </tr>
         </tbody>
 
     </table>
+
+    <div th:each="athlete: ${athletes}" th:object="${athlete}">
+        <div th:replace="~{fragments/_athlete::showAthlete(*{name},*{surname},*{sport},*{age},*{country})}">
+
+        </div>
+    </div>
 
 
 </section>

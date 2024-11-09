@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+<section>
+    <p>Welcome to Students Page</p>
+    <hr/>
+
+<!--    <ul th:if="${rnd==1}">-->
+<!--        <li th:each="student, iter: ${students}" th:style="${iter.odd} ? 'color: blue' : 'background-color: red'">-->
+<!--            <span th:text="${student}" ></span>-->
+<!--        </li>-->
+<!--    </ul>-->
+
+<!--    <ol th:unless="${rnd==1}">-->
+<!--        <li th:each="student, iter: ${students}" th:style="${iter.odd} ? 'color: blue' : 'background-color: red'">-->
+<!--            <span th:text="${student}" ></span>-->
+<!--        </li>-->
+<!--    </ol>-->
+
+    <th:block th:switch="${rnd}">
+        <th:block th:case="0"> <ol> </th:block>
+        <th:block th:case="1"> <ul> </th:block>
+    </th:block>
+
+    <li th:each="student, iter: ${students}" th:style="${iter.odd} ? 'color: blue' : 'background-color: red'">
+        <span th:text="${student}" ></span>
+    </li>
+
+    <th:block th:switch="${rnd}">
+        <th:block th:case="0"> </ol> </th:block>
+        <th:block th:case="1"> </ul> </th:block>
+    </th:block>
+
+</section>
+
+</html>
+
