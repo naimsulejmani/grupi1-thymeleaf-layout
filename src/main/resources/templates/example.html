@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+<section>
+    <p>Welcome to Example Page</p>
+    <hr/>
+
+    <div th:switch="${randomPage}">
+        <p th:case="'about'">About Page</p>
+        <p th:case="'contact'">Contact Page</p>
+        <p th:case="'index'">Index Page</p>
+        <p th:case="*">No page provided!</p>
+    </div>
+    <hr/>
+    <div th:each="element: ${#numbers.sequence(2,10,2)}">
+        <p th:text="${element}"></p>
+    </div>
+    <hr/>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Discipline</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="athlete, iter : ${athletes}" th:object="${athlete}"
+                th:style="${iter.even ? 'background-color: yellow' : ''}">
+                <td th:text="${iter.count}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{surname}"></td>
+                <td th:text="*{sport}"></td>
+                <td th:text="*{age}"></td>
+                <td th:text="*{country}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+</section>
+
+</html>
+
