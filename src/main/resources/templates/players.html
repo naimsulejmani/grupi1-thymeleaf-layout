@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+<section>
+    <p>Welcome to Players Page</p>
+    <hr/>
+    <form action="/players" method="get">
+        <label for="search">Search:</label>
+        <input type="search" id="search" name="search" placeholder="Search by name"/>
+<!--        <input type="text" name="test" placeholder="Test Input"/>-->
+        <button type="submit">Search</button>
+    </form>
+
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>Player ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
+            <th>Age</th>
+            <th>Country</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="player, iter : ${players}" th:object="${player}" th:style="${iter.even ? 'color:red':''}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{surname}"></td>
+            <td th:text="*{position}"></td>
+            <td th:text="*{age}"></td>
+            <td th:text="*{country}"></td>
+            <td>ACTION VIEW, EDIT, DELETE here</td>
+        </tr>
+    </table>
+
+
+</section>
+
+</html>
+
