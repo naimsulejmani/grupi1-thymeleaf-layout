@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout('Player Page', ~{::section})}">
+
+<section>
+    <p>Welcome to Player Page</p>
+    <hr/>
+
+    <a th:href="@{/players}">Back to Players</a>
+
+    <form th:if="${player!=null}" th:object="${player}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}"/><br/>
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" th:field="*{surname}"/><br/>
+        <label for="position">Position:</label>
+        <input type="text" id="position" th:field="*{position}"/><br/>
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}"/><br/>
+        <label for="country">Country:</label>
+        <input type="text" id="country" th:field="*{country}"/><br/>
+        <button type="submit">Save</button>
+
+<!--
+    th:field e krijon per neve name, id dhe value
+    th:field="id" e krijon name="id" id="id" value="id"
+-->
+
+    </form>
+
+    <div th:unless="${player!=null}">
+        <p>No player found</p>
+    </div>
+
+</section>
+
+</html>
+
