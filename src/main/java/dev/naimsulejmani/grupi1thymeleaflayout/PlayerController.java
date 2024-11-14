@@ -2,10 +2,7 @@ package dev.naimsulejmani.grupi1thymeleaflayout;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -56,6 +53,15 @@ public class PlayerController {
 //        return "players";
 //    }
 
+
+    @GetMapping("/new")
+    public String newPlayer(Model model) {
+        model.addAttribute("player", new Player());
+        return "players/new";
+    }
+
+
+
     //get players by id
     // http://localhost:8080/players/1
     @GetMapping("/{id}")
@@ -72,6 +78,23 @@ public class PlayerController {
         model.addAttribute("player", player);
         return "players/edit";
     }
+
+    @GetMapping("/{id}/delete")
+    public String deletePlayer(Model model, @PathVariable("id") int id) {
+        var player = players.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+        model.addAttribute("player", player);
+        return "players/delete";
+    }
+
+
+    @PostMapping("")
+    public String createPlayer(@ModelAttribute Player player) {
+        player.setId(players.size() + 1);
+        players.add(player);
+
+        return "redirect:/players";
+    }
+
 
 //    public Player findFirstPlayerById(int id) {
 //        Player player = null;

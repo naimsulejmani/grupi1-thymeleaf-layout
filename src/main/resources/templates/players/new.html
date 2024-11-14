@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout('Player Page', ~{::section})}">
+
+<section>
+    <p>Welcome to Player Page</p>
+    <hr/>
+
+    <a th:href="@{/players}">Back to Players</a>
+
+    <form th:object="${player}" th:action="@{/players}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}"/><br/>
+        <label for="surname">Surname:</label>
+        <input type="text" th:field="*{surname}"/><br/>
+        <label for="position">Position:</label>
+        <input type="text" th:field="*{position}"/><br/>
+        <label for="age">Age:</label>
+        <input type="number" th:field="*{age}"/><br/>
+        <label for="country">Country:</label>
+        <input type="text" th:field="*{country}"/><br/> <br/>
+        <button type="submit">Save</button>
+        <button type="reset">Reset</button>
+    </form>
+
+
+</section>
+
+</html>
+

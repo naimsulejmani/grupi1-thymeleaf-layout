@@ -22,6 +22,8 @@
             <span>Search Text: <b th:text="${search}"></b></span>
         </th:inline>
 
+        <a th:href="@{/players/new}" style="float:right; margin-right:25px">Add New Player</a>
+
     </form>
 
     <hr/>
@@ -47,6 +49,7 @@
             <td>
                 <a th:href="@{/players/{id}(id=*{id})}">View</a>
                 <a th:href="@{/players/{id}/edit(id=*{id})}">Edit</a>
+                <a th:href="@{/players/{id}/delete(id=*{id})}">Delete</a>
             </td>
         </tr>
     </table>

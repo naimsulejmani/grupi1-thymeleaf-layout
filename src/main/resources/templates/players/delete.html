@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout('Player Page', ~{::section})}">
+
+<section>
+    <p>Welcome to Player Page</p>
+    <hr/>
+
+    <a th:href="@{/players}">Back to Players</a>
+
+    <div th:if="${player!=null}" th:object="${player}">
+        <p>Name: <b th:text="*{name}"></b></p>
+        <p>Surname: <b th:text="*{surname}"></b></p>
+        <p>Position: <b th:text="*{position}"></b></p>
+        <p>Age: <b th:text="*{age}"></b></p>
+        <p>Country: <b th:text="*{country}"></b></p>
+        <button><a th:href="@{/players/{id}/delete(id=*{id})}">Delete this Player</a></button>
+    </div>
+
+    <div th:unless="${player!=null}">
+        <p>No player found</p>
+    </div>
+
+</section>
+
+</html>
+
