@@ -13,6 +13,7 @@
         <p>Position: <b th:text="*{position}"></b></p>
         <p>Age: <b th:text="*{age}"></b></p>
         <p>Country: <b th:text="*{country}"></b></p>
+        <a th:href="@{/players/{id}/edit(id=*{id})}">Edit This Player</a>
     </div>
 
     <div th:unless="${player!=null}">

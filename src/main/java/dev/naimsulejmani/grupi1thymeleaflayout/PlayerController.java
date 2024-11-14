@@ -34,7 +34,7 @@ public class PlayerController {
     ) {
 
         mav.addObject("search", search);
-        mav.setViewName("players"); // templates/players.html
+        mav.setViewName("players/list"); // templates/list.html
         mav.addObject("pageTitle", "Players Page");
 //        mav.addObject("players", players);
         System.out.println("search: " + search);
@@ -62,7 +62,7 @@ public class PlayerController {
     public String player(Model model, @PathVariable("id") int id) {
         var player = players.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
         model.addAttribute("player", player);
-        return "player";
+        return "players/details";
     }
 
     //http://localhost:8080/players/1/edit
@@ -70,7 +70,7 @@ public class PlayerController {
     public String editPlayer(Model model, @PathVariable("id") int id) {
         var player = players.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
         model.addAttribute("player", player);
-        return "edit-player";
+        return "players/edit";
     }
 
 //    public Player findFirstPlayerById(int id) {
