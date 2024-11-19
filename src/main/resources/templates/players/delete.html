@@ -5,22 +5,30 @@
     <p>Welcome to Player Page</p>
     <hr/>
 
-    <a th:href="@{/players}">Back to Players</a>
+    <th:block th:insert="~{/players/details.html::#player-details}">
 
-    <div th:if="${player!=null}" th:object="${player}">
-        <p>Name: <b th:text="*{name}"></b></p>
-        <p>Surname: <b th:text="*{surname}"></b></p>
-        <p>Position: <b th:text="*{position}"></b></p>
-        <p>Age: <b th:text="*{age}"></b></p>
-        <p>Country: <b th:text="*{country}"></b></p>
-        <form th:action="@{/players/{id}/delete(id=*{id})}" method="post">
-            <button type="submit">DELETE THIS PLAYER</button>
-        </form>
-    </div>
+    </th:block>
 
-    <div th:unless="${player!=null}">
-        <p>No player found</p>
-    </div>
+    <form th:action="@{/players/{id}/delete(id=*{id})}" method="post" th:if="${player!=null}">
+        <button type="submit">DELETE THIS PLAYER</button>
+    </form>
+
+<!--    <a th:href="@{/players}">Back to Players</a>-->
+
+<!--    <div th:if="${player!=null}" th:object="${player}">-->
+<!--        <p>Name: <b th:text="*{name}"></b></p>-->
+<!--        <p>Surname: <b th:text="*{surname}"></b></p>-->x
+<!--        <p>Position: <b th:text="*{position}"></b></p>-->
+<!--        <p>Age: <b th:text="*{age}"></b></p>-->
+<!--        <p>Country: <b th:text="*{country}"></b></p>-->
+<!--        <form th:action="@{/players/{id}/delete(id=*{id})}" method="post">-->
+<!--            <button type="submit">DELETE THIS PLAYER</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <div th:unless="${player!=null}">-->
+<!--        <p>No player found</p>-->
+<!--    </div>-->
 
 </section>
 
