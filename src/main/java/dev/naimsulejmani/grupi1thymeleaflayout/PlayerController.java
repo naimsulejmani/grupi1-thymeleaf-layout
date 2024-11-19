@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/players")
 public class PlayerController {
 
+    private static int generateId = 0;
     //List.of();
     private final List<Player> players = new ArrayList<>();
 
@@ -21,6 +22,7 @@ public class PlayerController {
         players.add(new Player(3, "Neymar", "Jr", "Forward", 33, "Brazil"));
         players.add(new Player(4, "Kylian", "Mbappe", "Forward", 25, "France"));
         players.add(new Player(5, "Mohamed", "Salah", "Forward", 32, "Egypt"));
+        generateId = players.size();
     }
 
     //http://localhost:8080/players?search=Naim
@@ -61,7 +63,6 @@ public class PlayerController {
     }
 
 
-
     //get players by id
     // http://localhost:8080/players/1
     @GetMapping("/{id}")
@@ -87,11 +88,35 @@ public class PlayerController {
     }
 
 
-    @PostMapping("")
+    @PostMapping("/new")
     public String createPlayer(@ModelAttribute Player player) {
-        player.setId(players.size() + 1);
+        player.setId(++generateId);
         players.add(player);
 
+        return "redirect:/players";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deletePlayer(@PathVariable("id") int id) {
+        // LAMBDA EXPRESSION, ANONYMOUS INNER CLASS, JAVA STREAM API
+        players.removeIf(player -> player.getId() == id);
+        return "redirect:/players";
+    }
+
+
+    @PostMapping("/{id}/edit")
+    public String updatePlayer(@ModelAttribute Player player, @PathVariable("id") int id) {
+        var playerToUpdate = players.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (playerToUpdate != null) {
+            playerToUpdate.setName(player.getName());
+            playerToUpdate.setSurname(player.getSurname());
+            playerToUpdate.setPosition(player.getPosition());
+            playerToUpdate.setAge(player.getAge());
+            playerToUpdate.setCountry(player.getCountry());
+        }
         return "redirect:/players";
     }
 

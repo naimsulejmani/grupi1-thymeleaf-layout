@@ -13,7 +13,9 @@
         <p>Position: <b th:text="*{position}"></b></p>
         <p>Age: <b th:text="*{age}"></b></p>
         <p>Country: <b th:text="*{country}"></b></p>
-        <button><a th:href="@{/players/{id}/delete(id=*{id})}">Delete this Player</a></button>
+        <form th:action="@{/players/{id}/delete(id=*{id})}" method="post">
+            <button type="submit">DELETE THIS PLAYER</button>
+        </form>
     </div>
 
     <div th:unless="${player!=null}">

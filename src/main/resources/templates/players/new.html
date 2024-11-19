@@ -7,7 +7,7 @@
 
     <a th:href="@{/players}">Back to Players</a>
 
-    <form th:object="${player}" th:action="@{/players}" method="post">
+    <form th:object="${player}" th:action="@{/players/new}" method="post">
         <label for="name">Name:</label>
         <input type="text" th:field="*{name}"/><br/>
         <label for="surname">Surname:</label>
